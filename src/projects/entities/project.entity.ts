@@ -8,10 +8,11 @@ import {
   ManyToMany,
   JoinTable,
   OneToMany,
+  BaseEntity,
 } from 'typeorm';
 
 @Entity()
-export class Project {
+export class Project extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

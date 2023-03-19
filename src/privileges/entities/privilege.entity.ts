@@ -6,10 +6,11 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
 @Entity()
-export class Privilege {
+export class Privilege extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
