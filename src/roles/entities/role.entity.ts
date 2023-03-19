@@ -25,7 +25,7 @@ export class Role extends BaseEntity {
   roleDescription: string;
 
   @Column()
-  delete: number;
+  deleted: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

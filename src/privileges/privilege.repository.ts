@@ -36,12 +36,13 @@ export class PrivilegeRepository extends Repository<Privilege> {
   async createPrivilege(
     createPrivilegeDto: CreatePrivilegeDto,
   ): Promise<Privilege> {
-    const { privilege_name, privilege_type, privilege_subject } =
+    const { privilege_name, privilege_type, privilege_subject, deleted } =
       createPrivilegeDto;
     const privilege = new Privilege();
     privilege.privilege_name = privilege_name;
     privilege.privilege_type = privilege_type;
     privilege.privilege_subject = privilege_subject;
+    privilege.deleted = deleted;
 
     await privilege.save();
 

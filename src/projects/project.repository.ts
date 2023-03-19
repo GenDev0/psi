@@ -39,9 +39,10 @@ export class ProjectRepository extends Repository<Project> {
 
   // create a new Project
   async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
-    const { name, projectDescription } = createProjectDto;
+    const { name, projectDescription, deleted } = createProjectDto;
     const project = new Project();
     project.name = name;
+    project.deleted = deleted;
     project.projectDescription = projectDescription;
 
     await project.save();

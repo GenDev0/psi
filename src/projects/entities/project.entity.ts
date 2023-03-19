@@ -29,7 +29,7 @@ export class Project extends BaseEntity {
   projectPicture: string;
 
   @Column()
-  delete: number;
+  deleted: string;
 
   @CreateDateColumn()
   created_at: Date;

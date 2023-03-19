@@ -8,10 +8,11 @@ import {
   UpdateDateColumn,
   Column,
   PrimaryGeneratedColumn,
+  BaseEntity,
 } from 'typeorm';
 
 @Entity()
-export class RolePrivilege {
+export class RolePrivilege extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -34,5 +35,5 @@ export class RolePrivilege {
   updatedAt: Date;
 
   @Column({ name: 'created_by' })
-  createdBy: number;
+  createdBy: string;
 }

@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateRoleDto {
   @IsNotEmpty()
@@ -6,4 +6,10 @@ export class CreateRoleDto {
 
   @IsNotEmpty()
   roleDescription: string;
+
+  @IsOptional()
+  roleIcon: string;
+
+  @IsOptional()
+  deleted: string;
 }

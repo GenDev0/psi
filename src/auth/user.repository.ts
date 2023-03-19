@@ -35,18 +35,32 @@ export class UserRepository extends Repository<User> {
 
   //Sign Up new user
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    const { first_name, last_name, password, email } = authCredentialsDto;
+    const {
+      first_name,
+      last_name,
+      password,
+      email,
+      profilPicture,
+      matricule,
+      fonction,
+      deleted,
+    } = authCredentialsDto;
     // initiate new User entity
     const user = new User();
     // isert username
     user.first_name = first_name;
     user.last_name = last_name;
+    user.profilPicture = profilPicture;
+    user.matricule = matricule;
+    user.fonction = fonction;
+    user.deleted = deleted;
     // isert username
     user.email = email;
     // prepare unique salt per user
     user.salt = await bcrypt.genSalt();
     // hash password with unique salt
     user.password = await this.hashPassword(password, user.salt);
+    console.log(user);
 
     try {
       // insert user into DB
@@ -56,25 +70,32 @@ export class UserRepository extends Repository<User> {
       if (error.code === 'ER_DUP_ENTRY') {
         throw new ConflictException('Username already exists !');
       } else {
+        console.log(error);
+
         throw new InternalServerErrorException();
       }
     }
   }
 
-  // //Password Validation for user
-  // async validateUserPassword(
-  //   authCredentialsDto: AuthCredentialsDto,
-  // ): Promise<string> {
-  //   const { fullname, password, email } = authCredentialsDto;
-  //   // find user from DB
-  //   const user = await this.userRepository.findOneBy({ email });
-  //   // check if user exist and the password is valid
-  //   if (user && (await user.validatePassword(password))) {
-  //     return user.fullname;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  //Password Validation for user
+  async validateUserPassword(
+    authCredentialsDto: AuthCredentialsDto,
+  ): Promise<{ email: string }> {
+    //roles: Role[]
+    const { password, email } = authCredentialsDto;
+    // find user from DB
+    const user = await this.userRepository.findOneBy({ email });
+    // check if user exist and the password is valid
+    if (user && (await user.validatePassword(password))) {
+      // Get User roles
+
+      return {
+        email: user.email,
+      };
+    } else {
+      return null;
+    }
+  }
 
   // // Update User
   // // Update a user

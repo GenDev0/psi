@@ -24,7 +24,7 @@ export class Privilege extends BaseEntity {
   privilege_subject: string;
 
   @Column()
-  delete: number;
+  deleted: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

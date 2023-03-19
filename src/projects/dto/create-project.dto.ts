@@ -12,4 +12,7 @@ export class CreateProjectDto {
 
   @IsOptional()
   projectPicture: string;
+
+  @IsOptional()
+  deleted: string;
 }

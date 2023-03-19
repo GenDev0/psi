@@ -44,7 +44,7 @@ export class User extends BaseEntity {
   matricule: string;
 
   @Column()
-  delete: number;
+  deleted: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

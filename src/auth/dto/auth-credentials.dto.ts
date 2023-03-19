@@ -1,6 +1,8 @@
 import {
   IsEmail,
+  IsIn,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Matches,
   MaxLength,
@@ -9,11 +11,13 @@ import {
 
 export class AuthCredentialsDto {
   @IsString()
+  @IsOptional()
   @MinLength(4)
   @MaxLength(20)
   first_name: string;
 
   @IsString()
+  @IsOptional()
   @MinLength(4)
   @MaxLength(20)
   last_name: string;
@@ -30,4 +34,17 @@ export class AuthCredentialsDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
+
+  @IsOptional()
+  matricule: string;
+
+  @IsOptional()
+  profilPicture: string;
+
+  @IsOptional()
+  fonction: string;
+
+  @IsOptional()
+  @IsIn(['0', '1'])
+  deleted: string;
 }

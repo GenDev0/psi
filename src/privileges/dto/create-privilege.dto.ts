@@ -7,6 +7,7 @@ import {
   IsIn,
   IsInstance,
   IsNotEmpty,
+  IsOptional,
   ValidateNested,
 } from 'class-validator';
 
@@ -26,4 +27,7 @@ export class CreatePrivilegeDto {
 
   @IsNotEmpty()
   privilege_subject: string;
+
+  @IsOptional()
+  deleted: string;
 }

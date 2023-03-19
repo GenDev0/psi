@@ -11,10 +11,11 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
 @Entity()
-export class UserRoleProject {
+export class UserRoleProject extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
