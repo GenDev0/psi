@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
@@ -16,28 +17,28 @@ import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
-  create(@Body() authCredentialsDto: AuthCredentialsDto) {
-    return this.authService.create(authCredentialsDto);
+  @Post('/signup')
+  signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto) {
+    return this.authService.signUp(authCredentialsDto);
   }
 
-  @Get()
-  findAll() {
-    return this.authService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.authService.findAll();
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.authService.findOne(+id);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
+  //   return this.authService.update(+id, updateAuthDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.authService.remove(+id);
+  // }
 }

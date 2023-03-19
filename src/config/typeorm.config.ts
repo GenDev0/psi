@@ -6,7 +6,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   port: 3307,
   username: 'root',
   password: '',
-  database: 'portailsi_permission',
+  database: 'portailsi_privilege',
   entities: [__dirname + '../**/*.entity.ts'],
   synchronize: true, // not good in Production
   autoLoadEntities: true,

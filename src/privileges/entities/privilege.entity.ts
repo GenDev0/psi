@@ -13,11 +13,14 @@ export class Privilege {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'json' })
-  privilege_name: string[];
+  @Column()
+  privilege_name: string;
 
   @Column()
   privilege_type: string;
+
+  @Column()
+  privilege_subject: string;
 
   @Column()
   delete: number;

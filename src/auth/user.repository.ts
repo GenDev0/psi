@@ -26,39 +26,40 @@ export class UserRepository extends Repository<User> {
   // Custom methods in the repo...
 
   // Get all users
-  async getUsers(): Promise<User[]> {
-    const query = this.userRepository.createQueryBuilder('user');
+  // async getUsers(): Promise<User[]> {
+  //   const query = this.userRepository.createQueryBuilder('user');
 
-    const users = await query.getMany();
-    return users;
-  }
-
-  // Sign Up new user
-  // async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-  //   const { fullname, password, email } = authCredentialsDto;
-  //   // initiate new User entity
-  //   const user = new User();
-  //   // isert username
-  //   user.fullname = fullname;
-  //   // isert username
-  //   user.email = email;
-  //   // prepare unique salt per user
-  //   user.salt = await bcrypt.genSalt();
-  //   // hash password with unique salt
-  //   user.password = await this.hashPassword(password, user.salt);
-
-  //   try {
-  //     // insert user into DB
-  //     await user.save();
-  //   } catch (error) {
-  //     // throw error in case of duplicate or else...
-  //     if (error.code === 'ER_DUP_ENTRY') {
-  //       throw new ConflictException('Username already exists !');
-  //     } else {
-  //       throw new InternalServerErrorException();
-  //     }
-  //   }
+  //   const users = await query.getMany();
+  //   return users;
   // }
+
+  //Sign Up new user
+  async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    const { first_name, last_name, password, email } = authCredentialsDto;
+    // initiate new User entity
+    const user = new User();
+    // isert username
+    user.first_name = first_name;
+    user.last_name = last_name;
+    // isert username
+    user.email = email;
+    // prepare unique salt per user
+    user.salt = await bcrypt.genSalt();
+    // hash password with unique salt
+    user.password = await this.hashPassword(password, user.salt);
+
+    try {
+      // insert user into DB
+      await user.save();
+    } catch (error) {
+      // throw error in case of duplicate or else...
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new ConflictException('Username already exists !');
+      } else {
+        throw new InternalServerErrorException();
+      }
+    }
+  }
 
   // //Password Validation for user
   // async validateUserPassword(
@@ -105,8 +106,8 @@ export class UserRepository extends Repository<User> {
   //   return { accessToken };
   // }
 
-  // // Hash user Password
-  // private async hashPassword(password: string, salt: string): Promise<string> {
-  //   return await bcrypt.hash(password, salt);
-  // }
+  // Hash user Password
+  private async hashPassword(password: string, salt: string): Promise<string> {
+    return await bcrypt.hash(password, salt);
+  }
 }

@@ -7,10 +7,11 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
 @Entity()
-export class Role {
+export class Role extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
