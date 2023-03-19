@@ -1,5 +1,8 @@
 // user_project_role.entity.ts
 
+import { User } from 'src/auth/entities/user.entity';
+import { Project } from 'src/projects/entities/project.entity';
+import { Role } from 'src/roles/entities/role.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

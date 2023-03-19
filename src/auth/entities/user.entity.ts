@@ -12,8 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { Project } from 'src/projects/project.entity';
-import { UserRoleProject } from 'src/user-role-project/user-role-project.entity';
+import { UserRoleProject } from 'src/user-role-project/entities/user-role-project.entity';
 
 @Entity()
 @Unique(['email'])
