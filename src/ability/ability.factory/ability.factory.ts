@@ -1,6 +1,7 @@
 import { Project } from 'src/projects/entities/project.entity';
 import {
   AbilityBuilder,
+  ExtractSubjectType,
   InferSubjects,
   MongoAbility,
   createMongoAbility,
@@ -32,8 +33,15 @@ export class AbilityFactory {
     const { can, cannot, build } = new AbilityBuilder<AppAbility>(
       createMongoAbility,
     );
+    console.log(user);
 
     //define rules
-    can(Action.Read, 'all');
+    can(Action.Read, Project);
+
+    return build({
+      // Read https://casl.js.org/v6/en/guide/subject-type-detection for details
+      detectSubjectType: (item) =>
+        item.constructor as ExtractSubjectType<Subjects>,
+    });
   }
 }
